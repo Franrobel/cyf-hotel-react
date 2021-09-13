@@ -1,10 +1,17 @@
-// const Order = () => {
-//     return (
-//         <li>
-//         Pizzas: {orders}
-//           <RestaurantButton number={orderOne}/>
-//           {/* <button onClick={() => orderOne()} className="btn btn-primary">Add</button> */}
-//         </li>
-//     )
-// }
-// export default Order
+import React, { useState } from "react";
+import RestaurantButton from "./RestaurantButton";
+
+const Order = props => {
+  const { orderType } = props;
+  const [orders, setOrders] = useState(0);
+  const orderOne = () => {
+    setOrders(orders + 1);
+  };
+  return (
+    <li>
+      {orderType}: {orders}
+      <RestaurantButton number={orderOne} />
+    </li>
+  );
+};
+export default Order;
