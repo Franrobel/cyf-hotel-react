@@ -1,6 +1,8 @@
 import React from "react";
 import moment from "moment";
+
 const SearchResults = props => {
+  console.log(props);
   return (
     <div>
       <table className="table">

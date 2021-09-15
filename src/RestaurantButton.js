@@ -8,7 +8,6 @@ const RestaurantButton = props => {
       }}
       className="btn btn-primary"
     >
-      {" "}
       Add
     </button>
   );
