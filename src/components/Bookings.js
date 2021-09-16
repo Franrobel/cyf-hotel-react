@@ -7,14 +7,14 @@ const Bookings = () => {
   const search = searchVal => {
     console.info("TO DO!", searchVal);
   };
-  const [bookings, setBookings] = useState([FakeBookings]);
-  console.log(setBookings);
+  const [bookings, setBookings] = useState(FakeBookings); // el array bookings de useState contiene el array fakebooking como no cambia estado no hace falta declarar segundo parametro
+  console.log(bookings);
 
   return (
     <div className="App-content">
       <div className="container">
         <Search search={search} />
-        <SearchResults results={FakeBookings} />
+        <SearchResults results={bookings} color="green" />
       </div>
     </div>
   );

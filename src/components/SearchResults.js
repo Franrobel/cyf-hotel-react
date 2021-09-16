@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 
 const SearchResults = props => {
-  console.log(props);
+  const [color, setColor] = useState();
+  function highlight() {
+    console.log(color);
+    setColor("green");
+  }
+
   return (
     <div>
       <table className="table">
         <thead>
-          <tr>
+          <tr className={color} onClick={highlight}>
             <th scope="col" />
             <th scope="col">id</th>
             <th scope="col">title</th>
