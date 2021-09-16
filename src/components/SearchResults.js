@@ -31,7 +31,7 @@ const SearchResults = props => {
             const OutDate = moment(item.checkOutDate);
 
             return (
-              <tr key={i}>
+              <tr className={color} onClick={highlight} key={i}>
                 <th scope="row" />
                 <td>{item.id}</td>
                 <td>{item.title}</td>

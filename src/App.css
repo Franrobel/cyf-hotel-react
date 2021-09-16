@@ -74,3 +74,9 @@ tr {
 .card {
   width: 18rem;
 }
+.green {
+  background-color: rgb(150, 187, 150);
+}
+.brown {
+  color: brown;
+}
