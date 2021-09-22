@@ -75,8 +75,12 @@ tr {
   width: 18rem;
 }
 .green {
-  background-color: rgb(150, 187, 150);
+  background-color: rgb(43, 180, 43);
 }
 .brown {
-  color: brown;
+  background-color: rgb(180, 109, 43);
+}
+
+.white {
+  background-color: rgb(255, 255, 255);
 }
