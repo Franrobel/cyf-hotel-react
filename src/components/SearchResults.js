@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import moment from "moment";
 
 const SearchResults = props => {
-  const [highlightI, setHighlightI] = useState(false);
-
-  const highlight = () => {
-    setHighlightI(!highlightI);
-  };
-
+  const [highlightI, setHighlightI] = useState();
+  console.log("debajo de useState: highlightI", highlightI);
+  function highlight(i) {
+    setHighlightI(i);
+    console.log("dentro de setHighLihgt: highlightI", highlightI);
+  }
   return (
     <div>
       <table className="table">
@@ -26,21 +26,18 @@ const SearchResults = props => {
           </tr>
         </thead>
         <tbody>
-          {props.results.map(item => {
+          {props.results.map((item, i) => {
             const InDate = moment(item.checkInDate);
             const OutDate = moment(item.checkOutDate);
-            //let className = "white"
-            // if (i === highlightI) {
-            //   className="green"
-            //   console.log("this is i", i);
-            //   console.log("dentro del if", highlightI);
-            // }
+            let className = "white";
+            if (i === highlightI) {
+              className = "green";
+              console.log("this is i", i);
+              console.log("dentro del if", highlightI);
+            }
             // console.log(item);
             return (
-              <tr
-                className={highlightI ? "green" : undefined}
-                onClick={highlight}
-              >
+              <tr className={className} onClick={() => highlight(i)} key={i}>
                 <th scope="row" />
                 <td>{item.id}</td>
                 <td>{item.title}</td>
