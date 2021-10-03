@@ -84,3 +84,9 @@ tr {
 .white {
   background-color: rgb(255, 255, 255);
 }
+#loading-data {
+  position: relative;
+  left: 35px;
+  border: 10px solid red;
+  text-align: center;
+}

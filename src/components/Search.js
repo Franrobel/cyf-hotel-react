@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import SearchButton from "../SearchButton";
 
-const Search = () => {
+const Search = ({ search }) => {
   const [searchInput, setSearchInput] = useState("");
   const handleSearchInput = event => {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    setSearchInput(event.target.value);
+    search(searchInput); // setSearchInput(search) --> porque me aparece error
+    console.log(searchInput);
   };
   return (
     <div className="search">
