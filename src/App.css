@@ -87,6 +87,6 @@ tr {
 #loading-data {
   position: relative;
   left: 35px;
-  border: 10px solid red;
+  border: 10px solid rgb(52, 116, 158);
   text-align: center;
 }

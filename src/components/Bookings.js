@@ -1,49 +1,52 @@
 import React, { useEffect, useState } from "react";
 import Search from "../components/Search.js";
 import SearchResults from "../components/SearchResults.js";
-//import FakeBookings from "../data/fakeBookings.json";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]); // el array bookings de useState contiene el array fakebooking como no cambia estado no hace falta declarar segundo parametro
-  const [searchVal, setsearchVal] = useState(null);
-  const [loadingData, setLoadingData] = useState(false);
-  console.log("loading data", loadingData);
+  const [searchVal, setsearchVal] = useState("");
+  const [loadingData, setLoadingData] = useState(true);
+  const [error, setError] = useState("");
+
   useEffect(() => {
-    const getData = () => {
-      fetch("https://cyf-react.glitch.me/delayed")
-        .then(response => response.json())
-        .then(data => {
-          setBookings(data);
-          setLoadingData(data);
-          console.log("data", data);
-        })
-        .then(fetch("https://cyf-react.glitch.me/error"));
-    };
-    getData();
-  }, []);
-
+    fetch("https://cyf-react.glitch.me/delayed/")
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.log("data.error", data.error);
+          setError(data.error);
+          throw new Error(data.error);
+        } else {
+          const bookings = searchVal
+            ? data.filter(
+                persona =>
+                  persona.firstName === searchVal ||
+                  persona.surname === searchVal
+              )
+            : data;
+          setBookings(bookings);
+          setLoadingData(false);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        setLoadingData(false);
+      });
+  }, [searchVal]);
   const search = value => {
-    console.info("TO DO!", searchVal);
     setsearchVal(value);
-
-    console.log("bookings despues de filter", bookings); //
   };
-
-  const filterBookings = searchVal
-    ? bookings.filter(
-        persona =>
-          persona.firstName === searchVal || persona.surname === searchVal
-      )
-    : bookings;
 
   return (
     <div className="App-content">
       <div className="container">
         <Search search={search} />
-        <SearchResults results={filterBookings} />
-        {!loadingData && (
-          <p id="loading-data">THE CUSTOMER DATA IS LOADING, PLEASE WAIT</p>
+        {loadingData ? (
+          <p id="loading-data">The Data is loading, Please wait</p>
+        ) : (
+          <SearchResults results={bookings} />
         )}
+        {error ? <p>{error}</p> : null}
       </div>
     </div>
   );
